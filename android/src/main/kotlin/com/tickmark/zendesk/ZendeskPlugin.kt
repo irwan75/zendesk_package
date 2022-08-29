@@ -132,7 +132,7 @@ class ZendeskPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     val chatConfiguration = chatConfigurationBuilder.build()
 
     MessagingActivity.builder()
-    .withToolbarTitle("Contact Us")
+    .withToolbarTitle("Chat With Us")
     .withEngines(ChatEngine.engine())
     .show(activity, chatConfiguration)
   }
