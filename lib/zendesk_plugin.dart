@@ -68,8 +68,8 @@ class Zendesk {
       'isOfflineFormEnabled': isOfflineFormEnabled,
       'messagingName': messagingName,
       'iosBackButtonTitle': iosBackButtonTitle,
-      'iosNavigationBarColor': iosNavigationBarColor,
-      'iosNavigationTitleColor': iosNavigationTitleColor,
+      'iosNavigationBarColor': iosNavigationBarColor?.value,
+      'iosNavigationTitleColor': iosNavigationTitleColor?.value,
     });
   }
 
