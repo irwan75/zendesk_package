@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_classes_with_only_static_members
 import 'dart:async';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/services.dart';
@@ -60,17 +61,26 @@ class Zendesk {
     Color? iosNavigationBarColor,
     Color? iosNavigationTitleColor,
   }) async {
-    await _channel.invokeMethod<void>('startChat', {
-      'primaryColor': primaryColor?.value,
-      'isPreChatFormEnabled': isPreChatFormEnabled,
-      'isAgentAvailabilityEnabled': isAgentAvailabilityEnabled,
-      'isChatTranscriptPromptEnabled': isChatTranscriptPromptEnabled,
-      'isOfflineFormEnabled': isOfflineFormEnabled,
-      'messagingName': messagingName,
-      'iosBackButtonTitle': iosBackButtonTitle,
-      'iosNavigationBarColor': iosNavigationBarColor?.value,
-      'iosNavigationTitleColor': iosNavigationTitleColor?.value,
-    });
+    if (Platform.isIOS) {
+      await _channel.invokeMethod<void>('startChat', {
+        'primaryColor': primaryColor?.value,
+        'isPreChatFormEnabled': isPreChatFormEnabled,
+        'isAgentAvailabilityEnabled': isAgentAvailabilityEnabled,
+        'isChatTranscriptPromptEnabled': isChatTranscriptPromptEnabled,
+        'isOfflineFormEnabled': isOfflineFormEnabled,
+        'messagingName': messagingName,
+        'iosBackButtonTitle': iosBackButtonTitle,
+        'iosNavigationBarColor': iosNavigationBarColor?.value,
+        'iosNavigationTitleColor': iosNavigationTitleColor?.value,
+      });
+    } else {
+      await _channel.invokeMethod<void>('startChat', {
+        'isPreChatFormEnabled': isPreChatFormEnabled,
+        'isAgentAvailabilityEnabled': isAgentAvailabilityEnabled,
+        'isChatTranscriptPromptEnabled': isChatTranscriptPromptEnabled,
+        'isOfflineFormEnabled': isOfflineFormEnabled,
+      });
+    }
   }
 
   /// Utility to optionaly add tags to the conversation. This can be set to
