@@ -82,8 +82,7 @@ public class SwiftZendeskPlugin: NSObject, FlutterPlugin {
         guard let isPreChatFormEnabled = dictionary["isPreChatFormEnabled"] as? Bool,
               let isAgentAvailabilityEnabled = dictionary["isAgentAvailabilityEnabled"] as? Bool,
               let isChatTranscriptPromptEnabled = dictionary["isChatTranscriptPromptEnabled"] as? Bool,
-              let isOfflineFormEnabled = dictionary["isOfflineFormEnabled"] as? Bool,
-              let messagingName = dictionary["messagingName"] as? String
+              let isOfflineFormEnabled = dictionary["isOfflineFormEnabled"] as? Bool
         else {return}
         
         // Set Color Chat SDK Zendesk
@@ -102,10 +101,13 @@ public class SwiftZendeskPlugin: NSObject, FlutterPlugin {
             navigationBarController.titleTextAttributes = attributes
         }
         
+        let messagingConfiguration = MessagingConfiguration()
         
         // Name for Bot messages
-        let messagingConfiguration = MessagingConfiguration()
-        messagingConfiguration.name = messagingName
+        if let messagingName = dictionary["messagingName"] as? String{
+            messagingConfiguration.name = messagingName
+        }
+
         
         // Chat configuration
         let chatConfiguration = ChatConfiguration()

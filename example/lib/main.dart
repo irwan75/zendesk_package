@@ -60,15 +60,15 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> openChat() async {
     try {
-      await Zendesk.setVisitorInfo(
-        name: 'Text Client',
-        email: 'test+client@example.com',
-        phoneNumber: '0000000000',
-        department: 'Support',
-      );
+      // await Zendesk.setVisitorInfo(
+      //   name: 'Text Client',
+      //   email: 'test+client@example.com',
+      //   phoneNumber: '0000000000',
+      //   department: 'Support',
+      // );
       await Zendesk.startChat(
         primaryColor: Colors.red,
-        messagingName: 'Nameku',
+        // messagingName: 'Nameku',
         iosBackButtonTitle: 'Back',
         isPreChatFormEnabled: false,
         isAgentAvailabilityEnabled: false,
